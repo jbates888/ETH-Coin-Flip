@@ -7,7 +7,7 @@ export function NoTokensMessage() {
     <>
       <p>You don't have tokens to play with</p>
       <p>
-        To get some tokens use a Rinkbey faucet 
+        To get some tokens use a Rinkeby faucet 
       </p>
     </>
   );
