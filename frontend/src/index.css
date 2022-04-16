@@ -129,10 +129,17 @@ hr {
   justify-content: center !important;
   align-items: center !important;
   border-style: none !important;
+  color: white !important;
 }
 
 .alert h1 {
   background-color: #282828;
+}
+
+/* close out button on messages */ 
+
+.close {
+  margin: 5px;
 }
 
 /* coin flip gif */

@@ -1,12 +1,13 @@
 // SPDX-License-Identifier: GPL-3.0
-
 pragma solidity ^0.8.10;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "hardhat/console.sol";
 
 /**
- * @title CoinFlip game contract
+ * @title CoinFlip
+ * @notice Coin flip game contract. The user can bet 0 or 1 for heads and tails
+ * if the users guesses correctly, they receive double their wager amount
  */
 contract CoinFlip is Ownable {
     /* events */

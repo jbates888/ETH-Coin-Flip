@@ -12,7 +12,7 @@ export function Loading() {
         left: 0,
         width: "100%",
         height: "100%",
-        background: "#0C1618",
+        background: "#282828",
       }}
     >
       <div

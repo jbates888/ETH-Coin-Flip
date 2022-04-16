@@ -11,6 +11,7 @@ import { ConnectWallet } from "./ConnectWallet";
 import { Loading } from "./Loading";
 import { Flip } from "./Flip";
 import { TransactionErrorMessage } from "./TransactionErrorMessage";
+import { LoserMessage } from "./LoserMessage";
 import { WaitingForTransactionMessage } from "./WaitingForTransactionMessage";
 import { NoTokensMessage } from "./NoTokensMessage";
 import { Header } from "./Header"
@@ -73,7 +74,8 @@ export class Dapp extends React.Component {
     return (
       <div>
         <Header address={this.state.selectedAddress} balance={this.state.balance.toString()}/>
-        {this.state.winner && <WinnerSplash />}
+        {this.state.winner === "winner" && <WinnerSplash />}
+        {this.state.winner === "loser" && <LoserMessage dismiss={() => this._dismissTransactionError()}/>}
         <div className="container p-4">
           <div className="row">
             <div className="col-12">
@@ -213,11 +215,12 @@ export class Dapp extends React.Component {
         value: ethers.utils.parseEther(amount)
       });
       this.setState({ txBeingSent: tx.hash });
-      // listen for a winner event
-      this._checkForWinner();
-
+    
       // wait for the transaction to be mined
       const receipt = await tx.wait();
+      // listen for a winner event
+      this._checkForWinner(receipt.events);
+
       // The receipt, contains a status flag, which is 0 to indicate an error.
       if (receipt.status === 0) {
         throw new Error("Transaction failed");
@@ -275,14 +278,18 @@ export class Dapp extends React.Component {
     return false;
   }
 
-  //TODO: This may not work because if another user wins this will pick up on their winner event. Instead we should read the transaction reeipt to see if the user won the flip
-  async _checkForWinner() {
-    this._coinFlip.on("Winner", (player, amount) => {
-      this.setState({ winner: true });
+  // check if the passed in event from the transaction was a winner event
+  async _checkForWinner(events) {
+   if(events[0].event === "Winner") {
+    this.setState({ winner: "winner" });
+   } else if (events[0].event === "Loser") {
+    this.setState({ winner: "loser" });
+   }
+    
+   // after 5 seconds reset the winner state 
+   setTimeout(function(){
+      this.setState({ winner: undefined});
+    }.bind(this),5000); 
 
-      setTimeout(function(){
-        this.setState({ winner: undefined});
-      }.bind(this),5000);  // wait 5 seconds, then reset to false
-    })
   }
 }
