@@ -5,7 +5,7 @@ This is an Ethereum coin flip game played on the Rinkeby test network
 The contract takes in a wager amount and a bet from the user, it then generates a pseudo random (Not secure to be used with real ETH)
 result and pays the user back double their wager if they guessed corretly. 
 
-Gmae URL: https://eth-coin-flip.vercel.app/
+Game URL: https://eth-coin-flip.vercel.app/
 
 Here is the contract on Rinkeby Etherscan: https://rinkeby.etherscan.io/address/0x82e07dc6f854c6647d834Cb780382617031a3d4d#code
 
