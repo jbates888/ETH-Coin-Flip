@@ -96,8 +96,8 @@ export class Dapp extends React.Component {
           <div className="row">
             <div className="col-12">
               {/*If the user has no tokens, we don't show the Transfer form */}
-              {this.state.balance === 0 && (
-                <NoTokensMessage selectedAddress={this.state.selectedAddress} />
+              {this.state.balance == 0 && (
+                <NoTokensMessage />
               )}
               {/*If a transaction is peneding, show the coin flipping gif */}
               {this.state.txBeingSent && <img className="flip-gif" src={coin} alt="flipping..." />}

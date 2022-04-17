@@ -4,11 +4,8 @@ import '../index.css'
 
 export function NoTokensMessage() {
   return (
-    <>
-      <p>You don't have tokens to play with</p>
-      <p>
-        To get some tokens use a Rinkbey faucet 
-      </p>
-    </>
+    <div className="alert alert-danger" role="alert">
+      <h3>You dont have any ETH in your wallet, use a faucet to get some for free!</h3>
+    </div>
   );
 }

@@ -17,7 +17,6 @@ export function NoWalletDetected() {
             >
               MetaMask
             </a>
-            to play the game!
           </h3>
         </div>
       </div>
