@@ -205,7 +205,7 @@ export class Dapp extends React.Component {
   async _flip(bet, amount) {
     // make sure the user is not betting more than the game balance
     if(amount > this.state.contractBalance) {
-      window.alert("Please set wager amount and your guess");
+      window.alert("You cant bet more than the game's balance");
       return;
     }
 
