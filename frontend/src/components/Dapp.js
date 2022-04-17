@@ -113,7 +113,7 @@ export class Dapp extends React.Component {
           </div>
         </div>
         <footer className="footer">
-          <p>Game Balance: {this.state.contractBalance}</p>
+          <p>Game Balance: {this.state.contractBalance} ETH</p>
         </footer>
       </div>
     );
@@ -203,6 +203,12 @@ export class Dapp extends React.Component {
   }
 
   async _flip(bet, amount) {
+    // make sure the user is not betting more than the game balance
+    if(amount > this.state.contractBalance) {
+      window.alert("Please set wager amount and your guess");
+      return;
+    }
+
     try {
       // If a transaction fails, we save that error in the component's state.
       // We only save one such error, so before sending a second transaction, we
